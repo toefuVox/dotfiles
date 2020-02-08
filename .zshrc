@@ -144,9 +144,11 @@ ulimit -c 0
 # -----------------------------
 
 # zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
-autoload -U compinit
-compinit -u
+if [ -e /usr/local/share/zsh-competions ]; then
+  fpath=(/usr/local/share/zsh-completions $fpath)
+  autoload -U compinit
+  compinit -u
+fi
 
 # docker completons
 if [ -e ~/.zsh/completions ]; then
