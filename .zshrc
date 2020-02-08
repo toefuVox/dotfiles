@@ -142,6 +142,12 @@ ulimit -c 0
 # -----------------------------
 # Completion
 # -----------------------------
+
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+autoload -U compinit
+compinit -u
+
 # docker completons
 if [ -e ~/.zsh/completions ]; then
   fpath=(~/.zsh/completions $fpath)
@@ -152,7 +158,7 @@ source ~/.ghq/github.com/kwhrtsk/docker-fzf-completion/docker-fzf.zsh
 autoload -Uz compinit ; compinit
 
 # 単語の入力途中でもTab補完を有効化
-#setopt complete_in_word
+setopt complete_in_word
 
 # コマンドミスを修正
 setopt correct
