@@ -35,6 +35,7 @@ alias lt='ls --tree'
 # setting for fizzy find
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_COMPLETION_TRIGGER="," # default: '**'
+export FZF_DEFAULT_OPTS='--color=fg+:11 --height 70% --reverse --select-1 --exit-0 --multi'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#bbbbbb,bold,underline"
 
@@ -227,6 +228,6 @@ alias co='git checkout $(git branch -a | tr -d " " |fzf --height 100% --prompt "
 alias frp='frepo'
 frepo() {
   local dir
-  dir=$(ghq list > /dev/null | fzf-tmux --reverse +m) &&
+  dir=$(ghq list > /dev/null | fzf-tmux +m --height 100% --prompt "SELECT Repository>") &&
     cd $(ghq root)/$dir
 }
