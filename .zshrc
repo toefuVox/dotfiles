@@ -227,6 +227,9 @@ alias tg='git diff $(git log --pretty=format:"%h %s" | fzf-tmux --height 100% --
 # git checkout branchをfzfで選択
 alias co='git checkout $(git branch -a | tr -d " " |fzf-tmux --height 100% --prompt "CHECKOUT BRANCH>" --preview "git log --color=always {}" | head -n 1 | sed -e "s/^\*\s*//g" | perl -pe "s/remotes\/origin\///g")'
 
+#git branch --delete <branch>をfzfで選択
+alias bd='git branch -d $(git branch -a | fzf --prompt "DELETE BRANCH>")'
+
 # cdrの設定
 autoload -Uz is-at-least
 if is-at-least 4.3.11
