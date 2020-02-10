@@ -224,10 +224,32 @@ fbr() {
 # git checkout branchをfzfで選択
 alias co='git checkout $(git branch -a | tr -d " " |fzf --height 100% --prompt "CHECKOUT BRANCH>" --preview "git log --color=always {}" | head -n 1 | sed -e "s/^\*\s*//g" | perl -pe "s/remotes\/origin\///g")'
 
-# frepo - fzf ghq and cd
+# cdrの設定
+autoload -Uz is-at-least
+if is-at-least 4.3.11
+then
+  autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+  add-zsh-hook chpwd chpwd_recent_dirs
+  zstyle ':chpwd:*'      recent-dirs-max 500
+  zstyle ':chpwd:*'      recent-dirs-default yes
+  zstyle ':completion:*' recent-dirs-insert both
+fi
+
+# fzf-cdr 
+alias cdd='fzf-cdr'
+function fzf-cdr() {
+    target_dir=`cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf`
+    target_dir=`echo ${target_dir/\~/$HOME}`
+    if [ -n "$target_dir" ]; then
+        cd $target_dir
+    fi
+}
+
+# frepo - search repository and change directory
 alias frp='frepo'
 frepo() {
   local dir
-  dir=$(ghq list > /dev/null | fzf-tmux +m --height 100% --prompt "SELECT Repository>") &&
+  dir=$(ghq list > /dev/null | fzf-tmux +m --height 100% --prompt "SELECT REPOSITORY>") &&
     cd $(ghq root)/$dir
 }
+
