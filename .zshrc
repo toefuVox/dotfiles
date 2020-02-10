@@ -221,6 +221,7 @@ fbr() {
 }
 
 # frepo - fzf ghq and cd
+alias frp='frepo'
 frepo() {
   local dir
   dir=$(ghq list > /dev/null | fzf-tmux --reverse +m) &&
