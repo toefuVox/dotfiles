@@ -27,6 +27,10 @@ eval "$(starship init zsh)"
 
 #setting for lsd
 alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -al'
+alias lt='ls --tree'
 
 # setting for fizzy find
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
