@@ -1,0 +1,19 @@
+set timeoutlen=200
+
+set clipboard+=unnamed
+set clipboard=unnamed
+
+imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-h> <Left>
+imap <C-l> <Right>
+
+nmap \: ;
+nmap ; \: 
+
+nmap <Space>w :w<cr>
+
+" jjでエスケープ
+imap jj <esc>
+" 日本語入力で”っj”と入力してもEnterキーで確定させればインサートモードを抜ける
+imap っj <esc>
