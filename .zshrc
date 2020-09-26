@@ -19,6 +19,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+# load for rbenv
+eval "$(rbenv init -)"
+
 # setting for direnv
 eval "$(direnv hook zsh)"
 
@@ -32,12 +35,18 @@ alias la='ls -a'
 alias lla='ls -al'
 alias lt='ls --tree'
 
+# setting for ripgrep
+alias grep='rg'
+
 # setting for fizzy find
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_COMPLETION_TRIGGER="," # default: '**'
 export FZF_DEFAULT_OPTS='--color=fg+:11 --height 70% --reverse --select-1 --exit-0 --multi'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#bbbbbb,bold,underline"
+
+# docker-machine のハイパーバイザをvirtual boxに変更する
+# eval "$(docker-machine env docker-host-default)"
 
 
 # -----------------------------
@@ -241,7 +250,7 @@ then
   zstyle ':completion:*' recent-dirs-insert both
 fi
 
-# fzf-cdr 
+# fzf-cdr
 alias cdd='fzf-cdr'
 function fzf-cdr() {
     target_dir=`cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf`
@@ -258,4 +267,44 @@ frepo() {
   dir=$(ghq list > /dev/null | fzf-tmux +m --height 100% --prompt "SELECT REPOSITORY>") &&
     cd $(ghq root)/$dir
 }
+
+
+# -----------------------------
+# docker setting
+# -----------------------------
+#構築系
+alias dcb='docker-compose build'
+alias dcbnc='docker-compose build --no-cache'
+alias dcconf='docker-compose config'
+
+# 起動系
+alias dcup='docker-compose up'
+alias dcupd='docker-compose up -d'
+alias dcupb='docker-compose up --build'
+alias dcupbd='docker-compose up -d --build'
+alias dcstop='docker-compose stop'
+alias dcdown='docker-compose down'
+alias dcrst='docker-compose restart'
+
+#プロセス系
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias dcps='docker-compose ps'
+alias dcpsa='docker-compose ps -a'
+
+# 削除
+# 各項目の全削除
+alias dcpr='docker container prune'
+alias dvpr='docker volume prune'
+alias dipr='docker image prune'
+alias dsypr='docker system prune'
+
+# コンテナに対して操作
+alias dcrun='docker-compose run'
+alias dcrunrm='docker-compose run --rm'
+alias dcexec='docker-compose exec'
+# app コンテナに対して操作
+alias dcrrb='docker-compose run --rm bash'
+alias dcea='docker-compose exec app'
+alias dceab='docker-compose exec app bash'
 
