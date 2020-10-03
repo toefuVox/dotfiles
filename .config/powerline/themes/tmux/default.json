@@ -1,0 +1,51 @@
+{
+  "segment_data":{
+    "battery":{
+    }
+  },
+	"segments": {
+		"right": [
+			{
+				"function": "powerline.segments.common.net.internal_ip",
+        "width": 3,
+        "align": "c",
+        "priority": 50
+			},
+			{
+				"function": "powerline.segments.common.sys.cpu_load_percent",
+        "before":"\uF0E4 ",
+        "width": 3,
+        "align": "c",
+        "priority": 50
+			},
+			{
+        "name": "battery",
+				"function": "powerline.segments.common.bat.battery",
+				"args": {
+					"online":"\uF1E6", 
+					"offline": "\uF0E7"
+				}
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "date",
+        "before":"\uF073 ",
+        "width": 3,
+        "align": "c",
+        "priority": 50
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+        "before":"\uF267 ",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			},
+			{
+				"function": "powerline.segments.common.env.user"
+			}
+		]
+	}
+}
