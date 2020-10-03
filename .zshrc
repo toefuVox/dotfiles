@@ -14,6 +14,9 @@ fi
 # pyenvさんに~/.pyenvではなく、/usr/loca/var/pyenvを使うようにお願いする
 export PYENV_ROOT=/usr/local/var/pyenv
 
+# 自作関数のパスを設定
+export PATH="$HOME/.mycommand:$PATH"
+
 # pyenvさんに自動補完機能を提供してもらう
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -84,6 +87,7 @@ setopt pushd_ignore_dups
 
 # viキーバインド
 bindkey -v
+bindkey "jj" vi-cmd-mode
 
 # フローコントロールを無効にする
 setopt no_flow_control
