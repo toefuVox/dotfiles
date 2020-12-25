@@ -218,9 +218,13 @@ setopt magic_equal_subst
 # -----------------------------
 # Install nvm
 # -----------------------------
+# export NVM_DIR="$HOME/.nvm"
+#  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+#  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # -----------------------------
 # fzf custom functionsn
@@ -312,3 +316,19 @@ alias dcrrb='docker-compose run --rm bash'
 alias dcea='docker-compose exec app'
 alias dceab='docker-compose exec app bash'
 
+
+# -----------------------------
+# zplug 
+# -----------------------------
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug "kutsan/zsh-system-clipboard"
+
+if ! zplug check --verbose; then
+  printf 'Install? [y/N: '
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+zplug load --verbose
