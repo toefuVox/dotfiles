@@ -15,6 +15,9 @@ syntax on
 "  leaderを変更
 let mapleader = "\<Space>"
 nnoremap <leader>w :action SaveAll<CR>
+nnoremap <leader>u :action NextTab<CR>
+nnoremap <leader>y :action PreviousTab<CR>
+" nnoremap <C-t> <Nop>
 
 " 表示行単位で上下移動するように
 nnoremap j gj
